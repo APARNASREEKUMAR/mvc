@@ -1,0 +1,29 @@
+<?php 
+include '/var/www/html/mvc/app/view/header.html';
+echo $_SESSION["msgType"];
+session_start();
+if (isset($_SESSION["msgType"])) {
+    if($_SESSION["msgType"] == 'success') {
+     ?>   
+    <div class="alert alert-success" role="alert">
+           <?=$_SESSION["msgContent"]?>
+    </div>
+    <?php
+    } else {
+    ?>
+    <div class="alert alert-danger" role="alert">
+           <?=$_SESSION["msgContent"]?>
+    </div>
+    <?php
+    }
+}
+$cars=$this->view_data;
+?>
+<h3>Edit Car Detail</h3>
+<form action="car/update/<?=$cars['id']?>" method="post">
+Car Name<input value="<?=$cars['carname']?>">
+<button type="submit" class="btn btn-primary">Submit</button>
+</form> 
+<?php
+include '/var/www/html/mvc/app/view/footer.html';
+?>

@@ -6,7 +6,7 @@ class Car{
     protected $dbconnection;
     public function __construct()
     {
-        echo " Car class in initialised<br>";
+        // echo " Car class in initialised<br>";
         $this->dbconnection = $this->connection();
     }
     public function getCars()
@@ -31,6 +31,31 @@ class Car{
 echo "not fetched";
         }
         echo "cars lsiting ";
+    }
+    public function deleteCar($id) :bool
+    {
+        $sql="DELETE FROM cars where id=$id";
+
+        if ($result=mysqli_query($this->dbconnection,$sql))
+        {
+
+        return true;    
+        }else {
+
+        return false;
+        }
+        
+    }
+    public function getCarDetail($id) 
+    {
+        $sql="SELECT *  FROM cars where id=$id";
+
+        if ($result=mysqli_query($this->dbconnection,$sql))
+        {
+
+            return $car=mysqli_fetch_assoc($result);    
+        }
+        
     }
 }
 ?>

@@ -1,11 +1,50 @@
 <?php 
 include '/var/www/html/mvc/app/view/header.html';
+
+if (isset($_SESSION["msgType"])) {
+    if($_SESSION["msgType"]=='success') {
+     ?>   
+    <div class="alert alert-success" role="alert">
+           <?=$_SESSION["msgContent"]?>
+    </div>
+    <?php
+    } else {
+    ?>
+    <div class="alert alert-danger" role="alert">
+           <?=$_SESSION["msgContent"]?>
+    </div>
+    <?php
+    }
+}
 ?>
 <h3>Car List</h3>
-<?php 
+
+    <table>
+        <thead>
+            <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+<?php   
 $cars=$this->view_data;
 for($i=0; $i< sizeof($cars);$i++){
-   echo $cars[$i]['carname']."<button>Edit</button><button>Delete</button><br>";
+?>    
+            <tr>
+            <td><?=$cars[$i]['id']?></td>
+            <td><?=$cars[$i]['carname']?></td>
+            <td><a href="/car/edit/<?=$cars[$i]['id']?>"</a><button class="btn btn-warning">Edit</button></a>
+                <a href="/car/delete/<?=$cars[$i]['id']?>"  </a><button class="btn btn-danger">Delete</button></a>
+            </td>
+            </tr>
+       
+<?php    
 } 
+?>
+</tbody>
+</table>
+<?php
 include '/var/www/html/mvc/app/view/footer.html';
 ?>
