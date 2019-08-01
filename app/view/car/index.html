@@ -1,0 +1,11 @@
+<?php 
+include '/var/www/html/mvc/app/view/header.html';
+?>
+<h3>Car List</h3>
+<?php 
+$cars=$this->view_data;
+for($i=0; $i< sizeof($cars);$i++){
+   echo $cars[$i]['carname']."<button>Edit</button><button>Delete</button><br>";
+} 
+include '/var/www/html/mvc/app/view/footer.html';
+?>
